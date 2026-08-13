@@ -1,6 +1,5 @@
 # =====================================================================
-# FINAL PRODUCTION SCRIPT: app.py
-# PROJECT: Gemma 2 Financial Deception Vector Auditor
+# FINAL PRODUCTION SCRIPT: app.py (SINGLE CSV VERSION)
 # =====================================================================
 import streamlit as st
 import pandas as pd
@@ -25,9 +24,24 @@ st.divider()
 
 # 3. Synchronized Data Loading & Rendering Pipeline
 try:
-    # Extract structural matrices from the root repository repository
-    df_compare = pd.read_csv("layer_metrics_compare.csv")
+    # Read the single unified 4-column CSV file safely
     df_diff = pd.read_csv("layer_metrics.csv") 
+    
+    # DYNAMIC TRICK: Transform the 4-column data into a long-form 52-row block 
+    # to feed the double line plot engine instantly from a single file asset!
+    df_compare = pd.melt(
+        df_diff, 
+        id_vars=["Layer"], 
+        value_vars=["Honest Activation", "Deceptive Activation"],
+        var_name="Prompt Type", 
+        value_name="Activation Norm"
+    )
+    
+    # Map the clean visualization labels for your chart legend
+    df_compare["Prompt Type"] = df_compare["Prompt Type"].map({
+        "Honest Activation": "Honest Audit Run",
+        "Deceptive Activation": "Deceptive Corporate Spin"
+    })
     
     # Define 2 side-by-side display column layouts layout spaces
     col1, col2 = st.columns(2) 
@@ -76,8 +90,8 @@ try:
         
 except FileNotFoundError as e:
     st.error("""
-    ⚠️ **Configuration Deployment Alert:** Missing required 4-column metric log files in root directory! 
-    Ensure both `layer_metrics_compare.csv` and `layer_metrics.csv` are pushed to your GitHub repository.
+    ⚠️ **Configuration Deployment Alert:** Missing required 'layer_metrics.csv' file in root directory! 
+    Ensure your unified 4-column data sheet is pushed directly to your GitHub repository.
     """)
 
 st.divider()
