@@ -23,9 +23,10 @@ st.divider()
 try:
     # Read both metric tracking sheets exported from Colab
     df_compare = pd.read_csv("layer_metrics_compare.csv")
-    df_diff = pd.read_csv("layer_metrics.csv") # <-- FIXED: Uses your exact filename
+    df_diff = pd.read_csv("layer_metrics.csv") 
     
-    col1, col2 = st.columns() 
+    # FIXED: Passed 2 as an explicit parameter to define layout division bounds
+    col1, col2 = st.columns(2) 
     
     with col1:
         st.subheader("📈 Activation Energy Divergence Tracks")
