@@ -50,6 +50,21 @@ The data logged inside `layer_metrics.csv` reveals three distinct operational ph
 2. **Mid-to-Late Layers (11–17) - Abstract Divergence:** The vectors split radically. The energy calculation **peaks prominently at Layer 14 ($\Delta = 59.4420$)**, demonstrating that calculating deceptive corporate spin forces an exponential shift in the model's abstract reasoning pathways.
 3. **Final Blocks (21–25) - Output Formatting:** The divergence collapses rapidly ($\Delta \to 0.8845$) as the hidden representations are compressed back down into logit token space to generate text.
 
+### 📈 Activation Dashboard Preview
+
+Below is the structured output from the live dashboard, displaying absolute layer energy channels side-by-side with our structural compliance master ledger:
+
+![Financial Deception Activation Dashboard Preview](dashboard_preview.png)
+
+*Figure 1: Side-by-side view tracking separate hidden state energy trajectories and multidimensional vector norm subtraction variances across the 26 network layers.*
+
+### Unified Master Data Table (26 Layers Logged)
+
+| Model Layer | Honest Activation (L2) | Deceptive Activation (L2) | Subtraction Delta |
+|---|---|---|---|
+
+   
+
 ### Unified Master Data Table (26 Layers Logged)
 The data dashboard visualizes this structural matrix across the full network scope:
 
