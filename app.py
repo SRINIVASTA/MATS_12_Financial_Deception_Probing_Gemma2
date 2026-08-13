@@ -1,15 +1,19 @@
+# =====================================================================
+# FINAL PRODUCTION SCRIPT: app.py
+# PROJECT: Gemma 2 Financial Deception Vector Auditor
+# =====================================================================
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# 1. Page Configuration Setup
+# 1. Establish Layout Matrix Config Boundaries
 st.set_page_config(
     page_title="AI Deception Auditor", 
     page_icon="📊", 
     layout="wide"
 )
 
-# 2. Main Professional Headers
+# 2. Main Executive Header Block
 st.title("📊 Gemma 2 Financial Deception Vector Auditor")
 st.markdown("### **Research Framework: MATS Cohort 12.0 Application Task**")
 st.markdown("""
@@ -19,27 +23,28 @@ This portal maps internal neural layer activations inside **Gemma-2-2B-it**. By 
 
 st.divider()
 
-# 3. Synchronized Data Loading & Rendering Pipe
+# 3. Synchronized Data Loading & Rendering Pipeline
 try:
-    # Read both metric tracking sheets exported from Colab
+    # Extract structural matrices from the root repository repository
     df_compare = pd.read_csv("layer_metrics_compare.csv")
     df_diff = pd.read_csv("layer_metrics.csv") 
     
-    # Define layout split bounds
+    # Define 2 side-by-side display column layouts layout spaces
     col1, col2 = st.columns(2) 
     
     with col1:
         st.subheader("📈 Activation Energy Divergence Tracks")
-        st.markdown("Comparing absolute hidden state vectors simultaneously:")
+        st.markdown("Two individual data series mapping absolute hidden state energy simultaneously:")
         
+        # Generates the exact double-line plot directly on your web deployment
         fig_compare = px.line(
             df_compare, 
             x="Layer", 
             y="Activation Norm", 
             color="Prompt Type", 
             color_discrete_map={
-                "Honest Audit Run": "#1F77B4",         
-                "Deceptive Corporate Spin": "#FF4B4B"  
+                "Honest Audit Run": "#1F77B4",         # Clean corporate blue
+                "Deceptive Corporate Spin": "#FF4B4B"  # Attention alert red
             },
             labels={"Layer": "Model Neural Layer Block", "Activation Norm": "Vector Magnitude (L2 Norm)"},
             markers=True
@@ -55,7 +60,7 @@ try:
         st.subheader("📋 Net Geometric Vector Drift Logs")
         st.markdown("Complete layer activation matrix mapping absolute magnitudes alongside net delta variance:")
         
-        # FIXED: Render all 3 metrics with 4-decimal string padding for clean scannability
+        # Renders all 4 structural columns side-by-side without truncation
         st.dataframe(
             df_diff,
             column_config={
@@ -66,12 +71,12 @@ try:
             },
             use_container_width=True, 
             height=460,
-            hide_index=True # Hides default pandas numbering index rows
+            hide_index=True # Hides default pandas sequencing numbering layers to fit data smoothly
         )
         
 except FileNotFoundError as e:
     st.error("""
-    ⚠️ **Configuration Deployment Alert:** Missing required metrics files in root directory! 
+    ⚠️ **Configuration Deployment Alert:** Missing required 4-column metric log files in root directory! 
     Ensure both `layer_metrics_compare.csv` and `layer_metrics.csv` are pushed to your GitHub repository.
     """)
 
