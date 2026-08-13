@@ -23,23 +23,22 @@ st.divider()
 try:
     # Read both metric tracking sheets exported from Colab
     df_compare = pd.read_csv("layer_metrics_compare.csv")
-    df_diff = pd.read_csv("layer_metrics_diff.csv")
+    df_diff = pd.read_csv("layer_metrics.csv") # <-- FIXED: Uses your exact filename
     
-    col1, col2 = st.columns([3, 2]) # Allocates optimal layout space width
+    col1, col2 = st.columns() 
     
     with col1:
         st.subheader("📈 Activation Energy Divergence Tracks")
         st.markdown("Comparing absolute hidden state vectors simultaneously:")
         
-        # Generates the exact double-line plot directly on your web deployment
         fig_compare = px.line(
             df_compare, 
             x="Layer", 
             y="Activation Norm", 
             color="Prompt Type", 
             color_discrete_map={
-                "Honest Audit Run": "#1F77B4",         # Clean corporate blue
-                "Deceptive Corporate Spin": "#FF4B4B"  # Attention alert red
+                "Honest Audit Run": "#1F77B4",         
+                "Deceptive Corporate Spin": "#FF4B4B"  
             },
             labels={"Layer": "Model Neural Layer Block", "Activation Norm": "Vector Magnitude (L2 Norm)"},
             markers=True
@@ -55,7 +54,6 @@ try:
         st.subheader("📋 Net Geometric Vector Drift Logs")
         st.markdown("Absolute subtraction delta trace (L2 Norm error value per layer):")
         
-        # Display the single column text metric table
         st.dataframe(
             df_diff.style.format({"Deviation Magnitude": "{:.4f}"}), 
             use_container_width=True, 
@@ -65,7 +63,7 @@ try:
 except FileNotFoundError as e:
     st.error("""
     ⚠️ **Configuration Deployment Alert:** Missing required metrics files in root directory! 
-    Ensure both `layer_metrics_compare.csv` and `layer_metrics_diff.csv` are pushed to your GitHub repository.
+    Ensure both `layer_metrics_compare.csv` and `layer_metrics.csv` are pushed to your GitHub repository.
     """)
 
 st.divider()
