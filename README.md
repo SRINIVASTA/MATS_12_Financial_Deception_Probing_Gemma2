@@ -3,7 +3,7 @@
 ### **AI Safety Research Framework | MATS Cohort 12.0 Stream Selection Task**
 **Lead Researcher:** Appala Srinivas Tanakala (FinTech Data Scientist / Quantitative Analyst)  
 **Target Mentor Stream:** Neel Nanda (Mechanistic Interpretability / Model Biology Track)  
-**Live Interactive Dashboard:** [https://mats12financialdeceptionprobinggemma2-ada2mjpru6sedyszbzgexy.streamlit.app/]
+**Live Interactive Dashboard:** [Launch Live Streamlit Dashboard](https://mats12financialdeceptionprobinggemma2-ada2mjpru6sedyszbzgexy.streamlit.app/)
 
 ---
 
