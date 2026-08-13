@@ -25,7 +25,7 @@ try:
     df_compare = pd.read_csv("layer_metrics_compare.csv")
     df_diff = pd.read_csv("layer_metrics.csv") 
     
-    # FIXED: Passed 2 as an explicit parameter to define layout division bounds
+    # Define layout split bounds
     col1, col2 = st.columns(2) 
     
     with col1:
@@ -53,12 +53,20 @@ try:
         
     with col2:
         st.subheader("📋 Net Geometric Vector Drift Logs")
-        st.markdown("Absolute subtraction delta trace (L2 Norm error value per layer):")
+        st.markdown("Complete layer activation matrix mapping absolute magnitudes alongside net delta variance:")
         
+        # FIXED: Render all 3 metrics with 4-decimal string padding for clean scannability
         st.dataframe(
-            df_diff.style.format({"Deviation Magnitude": "{:.4f}"}), 
+            df_diff,
+            column_config={
+                "Layer": st.column_config.NumberColumn("Model Layer", format="%d"),
+                "Honest Activation": st.column_config.NumberColumn("Honest Run (L2)", format="%.4f"),
+                "Deceptive Activation": st.column_config.NumberColumn("Deceptive Run (L2)", format="%.4f"),
+                "Net Vector Drift (Delta)": st.column_config.NumberColumn("Subtraction Delta", format="%.4f")
+            },
             use_container_width=True, 
-            height=420
+            height=460,
+            hide_index=True # Hides default pandas numbering index rows
         )
         
 except FileNotFoundError as e:
